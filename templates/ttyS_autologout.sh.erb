@@ -1,0 +1,5 @@
+# This file is managed by Puppet!
+if tty | egrep -q '\/ttyS[0-9]+$'; then
+    export TMOUT="<%= logout_timeout %>"
+    set autologout="${TMOUT}"
+fi
