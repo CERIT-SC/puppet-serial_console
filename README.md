@@ -31,7 +31,7 @@ class { 'serial_console':
   enable                 => false|true,  # enable configuration
   enable_kernel          => false|true,  # enable kernel config.
   enable_bootloader      => false|true,  # enable bootloader config.
-  enable_login           => flase|true,  # enable login over serial config.
+  enable_login           => false|true,  # enable login over serial config.
   device                 => '...',       # serial device name, e.g. /dev/ttyS0
   speed                  => ...,         # serial port speed, e.g. 115200
   kargs_erb              => '...',       # kernel console args. template
