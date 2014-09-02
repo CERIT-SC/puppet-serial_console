@@ -1,6 +1,6 @@
 {
   "name": "ceritsc-serial_console",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "author": "ceritsc",
   "summary": "System serial console setup",
   "license": "MIT",
@@ -63,7 +63,7 @@
   ],
   "dependencies": [
     {
-      "name": "puppetlabs-stdlib",
+      "name": "puppetlabs/stdlib",
       "version_requirement": ">= 4.0.0"
     }
   ]
