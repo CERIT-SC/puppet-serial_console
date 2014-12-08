@@ -1,6 +1,6 @@
 {
   "name": "ceritsc-serial_console",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": "ceritsc",
   "summary": "System serial console setup",
   "license": "MIT",
