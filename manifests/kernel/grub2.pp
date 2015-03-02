@@ -1,33 +1,29 @@
 class serial_console::kernel::grub2 (
-  $ttys_name,
-  $speed,
-  $kargs_erb
+  $tty,
+  $ttys,
+  $speed
 ) {
-  $kargs = inline_template($kargs_erb)
+  if $tty {
+    $value = [$tty, "${ttys},${speed}"]
+  } else {
+    $value = ["${ttys},${speed}"]
+  }
 
-  Augeas {
+  kernel_parameter { 'console':
+    ensure   => present,
+    value    => $value,
+    provider => 'grub2',
+  }
+
+  # cleanup
+  augeas { 'grub2_linux_default_cleanup':
     incl    => '/etc/default/grub',
     lens    => 'Shellvars.lns',
     context => '/files/etc/default/grub',
-    notify  => Class['serial_console::refresh'],
-  }
-
-  # create own settings line with identification comment
-  augeas { 'grub2_linux_default_new':
-    onlyif  => "match #comment[. = 'Puppet GRUB_CMDLINE_LINUX_DEFAULT console'] size == 0",
+    notify  => Class['serial_console::refresh'], #???
     changes => [
-      "rm GRUB_CMDLINE_LINUX_DEFAULT[. = '\"\${GRUB_CMDLINE_LINUX_DEFAULT} ${kargs}\"']", #cleanup
-      "set #comment[0] 'Puppet GRUB_CMDLINE_LINUX_DEFAULT console'",
-      "set GRUB_CMDLINE_LINUX_DEFAULT[preceding-sibling::*[1] = 'Puppet GRUB_CMDLINE_LINUX_DEFAULT console'] \
-'\"\${GRUB_CMDLINE_LINUX_DEFAULT} ${kargs}\"'",
+      'rm #comment[. = "Puppet GRUB_CMDLINE_LINUX_DEFAULT console"]',
+      "rm GRUB_CMDLINE_LINUX_DEFAULT[. = '\"\${GRUB_CMDLINE_LINUX_DEFAULT} console=tty0 console=${ttys},115200\"']",
     ],
-  }
-
-  # update previously created own settings line
-  augeas { 'grub2_linux_default_set':
-    require => Augeas['grub2_linux_default_new'],
-    onlyif  => "match #comment[. = 'Puppet GRUB_CMDLINE_LINUX_DEFAULT console'] size > 0",
-    changes => "set GRUB_CMDLINE_LINUX_DEFAULT[preceding-sibling::*[1] = 'Puppet GRUB_CMDLINE_LINUX_DEFAULT console'] \
-'\"\${GRUB_CMDLINE_LINUX_DEFAULT} ${kargs}\"'",
   }
 }

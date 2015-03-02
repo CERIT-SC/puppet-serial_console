@@ -1,19 +1,23 @@
 class serial_console::kernel::grubby (
-  $ttys_name,
-  $speed,
-  $kargs_erb
+  $tty,
+  $ttys,
+  $speed
 ) {
-  $kargs = inline_template($kargs_erb)
+  if $tty {
+    $kparams = "console=${tty} console=${ttys},${speed}"
+  } else {
+    $kparams = "console=${ttys},${speed}"
+  }
 
   exec { 'grubby-console-clean':
-    command => "grubby --update-kernel DEFAULT --remove-args '${kargs}'",
-    unless  => "grubby --info DEFAULT | egrep '^args=.*${kargs}'",
+    command => "grubby --update-kernel DEFAULT --remove-args '${kparams}'",
+    unless  => "grubby --info DEFAULT | egrep '^args=.*${kparams}'",
     path    => '/bin:/usr/bin:/sbin:/usr/sbin',
   }
 
   exec { 'grubby-console':
-    command => "grubby --update-kernel DEFAULT --args '${kargs}'",
-    unless  => "grubby --info DEFAULT | egrep '^args=.*${kargs}'",
+    command => "grubby --update-kernel DEFAULT --args '${kparams}'",
+    unless  => "grubby --info DEFAULT | egrep '^args=.*${kparams}'",
     path    => '/bin:/usr/bin:/sbin:/usr/sbin',
     require => Exec['grubby-console-clean'],
   }
