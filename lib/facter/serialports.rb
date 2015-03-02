@@ -46,7 +46,7 @@ Facter.add("usbserialports") do
         # 0: module:usb_serial_simple name:"suunto" vendor:0fcf product:1008 num_ports:1 port:0 path:usb-0000:00:1a.0-1.1.1.2
         # 1: module:pl2303 name:"pl2303" vendor:0557 product:2008 num_ports:1 port:0 path:usb-0000:00:1a.0-1.1.1.3
         if line =~ /^(\d+): module:/
-          ports << "ttysUSB#{$1}"
+          ports << "ttyUSB#{$1}"
         end
       end
 
