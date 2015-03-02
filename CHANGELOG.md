@@ -1,3 +1,14 @@
+## 2015-03-02 - Release 0.9.6
+
+### Summary
+
+Fix unquoted substitutions in /etc/default/grub.
+
+#### Bugfixes
+
+- Fix unquoted substitutions in /etc/default/grub
+  to prevent Augeas parse errors.
+
 ## 2015-03-02 - Release 0.9.5
 
 ### Summary
