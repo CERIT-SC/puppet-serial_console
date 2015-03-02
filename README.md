@@ -14,7 +14,8 @@ Module has been tested on:
 
 Required modules:
 
-* stdlib (https://github.com/puppetlabs/puppetlabs-stdlib)
+* puppetlabs-stdlib
+* herculesteam-augeasproviders\_grub
 
 # Quick Start
 
@@ -32,9 +33,9 @@ class { 'serial_console':
   enable_kernel          => false|true,  # enable kernel config.
   enable_bootloader      => false|true,  # enable bootloader config.
   enable_login           => false|true,  # enable login over serial config.
-  device                 => '...',       # serial device name, e.g. /dev/ttyS0
+  tty                    => '...',       # text console name
+  ttys                   => '...',       # serial device name without path, e.g. ttyS0
   speed                  => ...,         # serial port speed, e.g. 115200
-  kargs_erb              => '...',       # kernel console args. template
   runlevels              => '...',       # run levels for login over serial
   bootloader_timeout     => '...'        # bootloader timeout
   logout_timeout         => '...',       # interactive session timeout

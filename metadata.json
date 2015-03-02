@@ -1,6 +1,6 @@
 {
   "name": "ceritsc-serial_console",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "ceritsc",
   "summary": "System serial console setup",
   "license": "MIT",
@@ -54,14 +54,15 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": "3.3.x"
+      "version_requirement": "3.x"
     },
     {
       "name": "puppet",
-      "version_requirement": "3.3"
+      "version_requirement": ">= 3.3 < 4.0.0"
     }
   ],
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0"}
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0"},
+    {"name":"herculesteam/augeasproviders_grub","version_requirement":">= 2.0.1"}
   ]
 }

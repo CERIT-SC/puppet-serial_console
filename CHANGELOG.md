@@ -1,4 +1,23 @@
+## 2015-03-02 - Release 0.9.4
+
+### Summary
+
+Change GRUB2 manipulation to kernel_parameter{}, allow to specify
+non-serial tty console output, code refactoring. Fix device names
+in $::usbserialports.
+
+#### Features
+
+- Change work with GRUB2 from augeas{} to kernel_parameter{}
+- New option ($tty) to specify kernel console output to tty
+
+#### Bugfixes
+
+- Fix device names in fact $::usbserialports
+
 ## 2014-12-08 - Release 0.9.3
+
+### Summary
 
 Fix file/directory permissions.
 
