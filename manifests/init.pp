@@ -6,6 +6,7 @@ class serial_console (
   $tty                    = $serial_console::params::tty,
   $ttys                   = $serial_console::params::ttys,
   $speed                  = $serial_console::params::speed,
+  $term_type              = $serial_console::params::term_type,
   $runlevels              = $serial_console::params::runlevels,
   $bootloader_timeout     = $serial_console::params::bootloader_timeout,
   $logout_timeout         = $serial_console::params::logout_timeout,
@@ -41,9 +42,9 @@ class serial_console (
     $class_kernel = $serial_console::params::class_kernel
     if $enable_kernel and $class_kernel {
       class { "serial_console::kernel::${class_kernel}":
-        tty   => $tty,
-        ttys  => $ttys,
-        speed => $speed,
+        tty       => $tty,
+        ttys      => $ttys,
+        speed     => $speed,
       }
     }
 
@@ -65,6 +66,7 @@ class serial_console (
         ttys_id   => $ttys_id,
         speed     => $speed,
         runlevels => $runlevels,
+        term_type => $term_type,
       }
     }
 

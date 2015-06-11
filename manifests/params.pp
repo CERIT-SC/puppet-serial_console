@@ -12,6 +12,7 @@ class serial_console::params {
     $ttys = 'ttyS0'
   }
 
+  $term_type = 'vt100'
   $tty = 'tty0'
   $speed = 115200
   $runlevels = '2345'
