@@ -54,6 +54,14 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
           $cmd_refresh_bootloader = '/usr/sbin/update-grub'
         }
 
+        8: {
+          $class_kernel = 'grub2'
+          $class_bootloader = 'grub2'
+          $class_getty = undef
+          $cmd_refresh_init = undef
+          $cmd_refresh_bootloader = '/usr/sbin/update-grub'
+        }
+
         default: {
           fail("Unsupported OS version: \
 ${::operatingsystem} ${::operatingsystemmajrelease}")
