@@ -16,10 +16,10 @@ class serial_console (
 
   validate_bool($enable, $enable_kernel, $enable_bootloader, $enable_login)
   validate_string($ttys, $runlevels)
-  validate_re($speed, '^\d+$')
-  validate_re($runlevels, '^\d+$')
-  validate_re($bootloader_timeout, '^\d+$')
-  validate_re($logout_timeout, '^\d+$')
+  validate_re("${speed}", '^\d+$')
+  validate_re("${runlevels}", '^\d+$')
+  validate_re("${bootloader_timeout}", '^\d+$')
+  validate_re("${logout_timeout}", '^\d+$')
 
   if $cmd_refresh_init {
     validate_absolute_path($cmd_refresh_init)
