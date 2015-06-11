@@ -5,9 +5,9 @@ class serial_console::params {
   $enable_login = true
 
   # choose last available port
-  $_serialports = reverse(split($::serialports, ','))
-  if $_serialports[0] {
-    $ttys = $_serialports[0]
+  $l_serialports = reverse(split($::serialports, ','))
+  if $l_serialports[0] {
+    $ttys = $l_serialports[0]
   } else {
     $ttys = 'ttyS0'
   }
