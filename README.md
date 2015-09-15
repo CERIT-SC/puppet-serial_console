@@ -47,12 +47,16 @@ class { 'serial_console':
 
 # Facts
 
-### serialports, usbserialports
+### $::serialports, $::usbserialports
 
-Returns comma separated list of available (USB) serial port
-device names (without /dev prefix). E.g.: "ttyS0,ttyS1"
+Returns list of available (USB) serial port device names
+(without /dev prefix). E.g.:
 
-### grub1conf
+```
+["ttyS0","ttyS1"]
+```
+
+### $::grub1conf
 
 Returns absolute path to GRUB 1 configuration file.
 
