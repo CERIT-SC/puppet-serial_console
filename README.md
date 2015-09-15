@@ -56,6 +56,10 @@ device names (without /dev prefix). E.g.: "ttyS0,ttyS1"
 
 Returns absolute path to GRUB 1 configuration file.
 
+# Contributors
+
+* Steven Bakker <steven.bakker@ams-ix.net>
+
 ***
 
 CERIT Scientific Cloud, <support@cerit-sc.cz>
