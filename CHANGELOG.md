@@ -1,3 +1,19 @@
+## 2015-09-15 - Release 0.9.7
+
+### Summary
+
+Debian 8 and Puppet 4.x support. Facts as lists. Cleanups.
+
+#### Features
+
+- Support for new Debian 8 and updates for Puppet 4.x
+- Support for getty terminal type
+
+#### Bugfixes
+
+- Better parameters validation
+- Code cleanups
+
 ## 2015-03-02 - Release 0.9.6
 
 ### Summary

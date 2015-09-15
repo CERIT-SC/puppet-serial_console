@@ -1,6 +1,6 @@
 {
   "name": "ceritsc-serial_console",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "author": "ceritsc",
   "summary": "System serial console setup",
   "license": "MIT",
@@ -47,7 +47,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     }
   ],
