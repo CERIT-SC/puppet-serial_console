@@ -5,16 +5,15 @@ class serial_console::params {
   $enable_login = true
 
   # choose last available port
-  $l_serialports = reverse(split($::serialports, ','))
-  if $l_serialports[0] {
-    $ttys = $l_serialports[0]
+  if is_array($::serialports) and $::serialports[-1] {
+    $ttys = $::serialports[-1]
   } else {
     $ttys = 'ttyS0'
   }
 
-  $term_type = 'vt100'
   $tty = 'tty0'
   $speed = 115200
+  $term_type = 'vt100'
   $runlevels = '2345'
   $bootloader_timeout = 5
   $logout_timeout = 0
