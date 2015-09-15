@@ -1,12 +1,12 @@
 # Fact: serialports
 # Fact: usbserialports
 #
-# Purpose: comma separated list of (USB) serial devices
+# Purpose: list of (USB) serial devices
 #
 # Resolution:
 #   Detects device names (without /dev/ prefix) of
-#   the (USB) serial devices. Return as comma
-#   separated string.
+#   the (USB) serial devices. Returns a list or
+#   nothing.
 #
 # Caveats:
 #   Curently only Linux is supported.
@@ -29,7 +29,7 @@ Facter.add("serialports") do
       end
 
       unless ports.empty?
-        ports.join(',')
+        ports
       end
     end
   end
@@ -51,7 +51,7 @@ Facter.add("usbserialports") do
       end
 
       unless ports.empty?
-        ports.join(',')
+        ports
       end
     end
   end
