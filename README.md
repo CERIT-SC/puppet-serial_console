@@ -9,7 +9,7 @@ Module has been tested on:
 
 * Puppet 3.6
 * OS:
- * Debian 6,7
+ * Debian 6,7,8
  * RHEL/CentOS 6,7
 
 Required modules:
@@ -36,6 +36,7 @@ class { 'serial_console':
   tty                    => '...',       # text console name
   ttys                   => '...',       # serial device name without path, e.g. ttyS0
   speed                  => ...,         # serial port speed, e.g. 115200
+  term_type              => ...,         # serial terminal type, e.g. vt100
   runlevels              => '...',       # run levels for login over serial
   bootloader_timeout     => '...'        # bootloader timeout
   logout_timeout         => '...',       # interactive session timeout

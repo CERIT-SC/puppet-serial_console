@@ -2,6 +2,7 @@ class serial_console::getty::inittab (
   $ttys,
   $ttys_id,
   $speed,
+  $term_type,
   $runlevels
 ) {
   augeas { "inittab-agetty-${ttys}":
@@ -12,7 +13,7 @@ class serial_console::getty::inittab (
     changes => [
       "set runlevels ${runlevels}",
       'set action respawn',
-      "set process '/sbin/getty -8L ${speed} ${ttys} vt100'"
+      "set process '/sbin/getty -8L ${speed} ${ttys} ${term_type}'"
     ]
   }
 }
