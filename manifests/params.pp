@@ -5,6 +5,10 @@ class serial_console::params {
   $enable_login = true
 
   # choose last available port
+  # https://tickets.puppetlabs.com/browse/PUP-2966
+  # this could work wrong in 3.8.3 if
+  # stringify_facts unset in config file (default = true)
+  # it must be set to false 
   if is_array($::serialports) and $::serialports[-1] {
     $ttys = $::serialports[-1]
   } else {
@@ -44,6 +48,17 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
       }
     }
 
+    Ubuntu: {
+      case $::operatingsystemmajrelease {
+        14.04: {
+          $class_kernel = 'grub2'
+          $class_bootloader = 'grub2'
+          $class_getty = 'upstart'
+          $cmd_refresh_init = undef
+          $cmd_refresh_bootloader = '/usr/sbin/update-grub'
+        }
+      }
+    }
     debian: {
       case $::operatingsystemmajrelease {
         6,7: {
