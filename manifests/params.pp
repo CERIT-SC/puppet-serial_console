@@ -49,7 +49,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
     }
 
     Ubuntu: {
-      case $::operatingsystemmajrelease {
+      case $::operatingsystemrelease {
         14.04: {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
