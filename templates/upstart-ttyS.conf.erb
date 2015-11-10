@@ -1,0 +1,10 @@
+# <%= @ttys %> - getty
+#
+# This service maintains a getty on ttyS1 from the point the system is
+# started until it is shut down again.
+
+start on stopped rc or RUNLEVEL=[<%= runlevels %>]
+stop on runlevel [!<%= runlevels %>]
+
+respawn
+exec /sbin/getty -L <%= scope.lookupvar('serial_console::params::speed') %> <%= @ttys %> vt102
