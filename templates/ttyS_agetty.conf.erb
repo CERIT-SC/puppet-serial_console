@@ -1,0 +1,7 @@
+# This file is managed by Puppet!
+# <%= @ttys %>
+stop on runlevel [S016]
+start on runlevel [235]
+
+respawn
+exec agetty -8 -L -w /dev/<%= @ttys %> <%= @speed %> <%= @term_type %>
