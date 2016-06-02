@@ -21,11 +21,19 @@ class serial_console::params {
   case $::operatingsystem {
     redhat,centos,scientific,oraclelinux: {
       case $::operatingsystemmajrelease {
-        5,6: {
+        5: {
           $class_kernel = 'grubby'
           $class_bootloader = 'grub1'
           $class_getty = undef
           $cmd_refresh_init = undef
+          $cmd_refresh_bootloader = undef
+        }
+
+        6: {
+          $class_kernel = 'grubby'
+          $class_bootloader = 'grub1'
+          $class_getty = 'upstart'
+          $cmd_refresh_init = "/sbin/start $ttys"
           $cmd_refresh_bootloader = undef
         }
 
