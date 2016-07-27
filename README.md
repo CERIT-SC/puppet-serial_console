@@ -63,6 +63,7 @@ Returns absolute path to GRUB 1 configuration file.
 # Contributors
 
 * Steven Bakker <steven.bakker@ams-ix.net>
+* Matthew Rásó-Barnett <matthewrasobarnett@gmail.com>
 
 ***
 
