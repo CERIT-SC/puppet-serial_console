@@ -19,7 +19,7 @@ class serial_console::params {
   $logout_timeout = 0
 
   case $::operatingsystem {
-    'RedHat','CentOS','scientific','oraclelinux': {
+    'RedHat','CentOS','Scientific','SLC','OracleLinux': {
       case $::operatingsystemmajrelease {
         '5','6': {
           $class_kernel = 'grubby'
@@ -44,7 +44,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
       }
     }
 
-    'debian:' {
+    'Debian:' {
       case $::operatingsystemmajrelease {
         '6','7': {
           $class_kernel = 'grub2'
