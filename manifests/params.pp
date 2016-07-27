@@ -19,9 +19,9 @@ class serial_console::params {
   $logout_timeout = 0
 
   case $::operatingsystem {
-    redhat,centos,scientific,oraclelinux: {
+    'RedHat','CentOS','scientific','oraclelinux': {
       case $::operatingsystemmajrelease {
-        5,6: {
+        '5','6': {
           $class_kernel = 'grubby'
           $class_bootloader = 'grub1'
           $class_getty = undef
@@ -29,7 +29,7 @@ class serial_console::params {
           $cmd_refresh_bootloader = undef
         }
 
-        7: {
+        '7': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = undef
@@ -44,9 +44,9 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
       }
     }
 
-    debian: {
+    'debian:' {
       case $::operatingsystemmajrelease {
-        6,7: {
+        '6','7': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = 'inittab'
@@ -54,7 +54,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
           $cmd_refresh_bootloader = '/usr/sbin/update-grub'
         }
 
-        8: {
+        '8': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = undef
