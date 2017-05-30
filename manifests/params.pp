@@ -44,7 +44,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
       }
     }
 
-    'Debian:' {
+    'Debian': {
       case $::operatingsystemmajrelease {
         '6','7': {
           $class_kernel = 'grub2'
