@@ -1,7 +1,5 @@
-class serial_console::autologout (
-  $logout_timeout
-) {
-  if is_numeric($logout_timeout) and $logout_timeout>0 {
+class serial_console::autologout {
+  if $::serial_console::logout_timeout > 0 {
     $_ensure=file
   } else {
     $_ensure=absent

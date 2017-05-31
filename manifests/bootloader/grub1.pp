@@ -1,8 +1,4 @@
-class serial_console::bootloader::grub1 (
-  $ttys_id,
-  $speed,
-  $timeout
-) {
+class serial_console::bootloader::grub1 {
   augeas { 'grub1_terminal':
     incl    => $::grub1conf,
     lens    => 'Grub.lns',
@@ -12,12 +8,12 @@ class serial_console::bootloader::grub1 (
 
       'rm serial',
       'ins serial before title[1]',
-      "set serial/unit ${ttys_id}",
-      "set serial/speed ${speed}",
+      "set serial/unit ${::serial_console::_ttys_id}",
+      "set serial/speed ${::serial_console::speed}",
 
       'rm terminal',
       'ins terminal before title[1]',
-      "set terminal/timeout ${timeout}",
+      "set terminal/timeout ${::serial_console::bootloader_timeout}",
       'ins console after terminal/timeout', # 2.
       'ins serial after terminal/timeout', # 1.
     ],

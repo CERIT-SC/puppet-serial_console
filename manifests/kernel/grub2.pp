@@ -1,12 +1,11 @@
-class serial_console::kernel::grub2 (
-  $tty,
-  $ttys,
-  $speed
-) {
-  if $tty {
-    $value = [$tty, "${ttys},${speed}"]
+class serial_console::kernel::grub2 {
+  if $::serial_console::tty {
+    $_value = [
+      $::serial_console::tty,
+      "${::serial_console::ttys},${::serial_console::speed}"
+    ]
   } else {
-    $value = ["${ttys},${speed}"]
+    $_value = ["${::serial_console::ttys},${::serial_console::speed}"]
   }
 
   # Augeas didn't load /etc/default/grub with Shellvars_list.lns on
@@ -19,7 +18,7 @@ class serial_console::kernel::grub2 (
 
   kernel_parameter { 'console':
     ensure   => present,
-    value    => $value,
+    value    => $_value,
     provider => 'grub2',
     require  => Exec['grub-fix-subst'],
   }

@@ -10,6 +10,9 @@ class serial_console (
   $runlevels              = $serial_console::params::runlevels,
   $bootloader_timeout     = $serial_console::params::bootloader_timeout,
   $logout_timeout         = $serial_console::params::logout_timeout,
+  $class_kernel           = $serial_console::params::class_kernel,
+  $class_bootloader       = $serial_console::params::class_bootloader,
+  $class_getty            = $serial_console::params::class_getty,
   $cmd_refresh_init       = $serial_console::params::cmd_refresh_init,
   $cmd_refresh_bootloader = $serial_console::params::cmd_refresh_bootloader
 ) inherits serial_console::params {
@@ -21,63 +24,41 @@ class serial_console (
   validate_re("${bootloader_timeout}", '^\d+$')
   validate_re("${logout_timeout}", '^\d+$')
 
-  if $cmd_refresh_init {
+  unless empty($cmd_refresh_init) {
     validate_absolute_path($cmd_refresh_init)
   }
 
-  if $cmd_refresh_bootloader {
+  unless empty($cmd_refresh_bootloader) {
     validate_absolute_path($cmd_refresh_bootloader)
   }
 
   # validate ttys and extract id
   validate_re($ttys, '^ttyS(\d+)$')
-  $ttys_id = regsubst($ttys,'^ttyS(\d+)$','\1')
-  validate_re($ttys_id, '^\d+$')
+  $_ttys_id = regsubst($ttys,'^ttyS(\d+)$','\1')
+  validate_re($_ttys_id, '^\d+$')
 
   if ! ($ttys in $::serialports) {
     err("Invalid serial port '${ttys}'")
 
   } elsif $enable {
     # kernel serial console
-    $class_kernel = $serial_console::params::class_kernel
-    if $enable_kernel and $class_kernel {
-      class { "serial_console::kernel::${class_kernel}":
-        tty   => $tty,
-        ttys  => $ttys,
-        speed => $speed,
-      }
+    if $enable_kernel and ! empty($class_kernel) {
+      contain "::serial_console::kernel::${class_kernel}"
     }
 
     # GRUB over serial console
-    $class_bootloader = $serial_console::params::class_bootloader
-    if $enable_bootloader and $class_bootloader {
-      class { "serial_console::bootloader::${class_bootloader}":
-        ttys_id => $ttys_id,
-        speed   => $speed,
-        timeout => $bootloader_timeout,
-      }
+    if $enable_bootloader and ! empty($class_bootloader) {
+      contain "::serial_console::bootloader::${class_bootloader}"
     }
 
     # "login" over serial console
-    $class_getty = $serial_console::params::class_getty
-    if $enable_login and $class_getty {
-      class { "serial_console::getty::${class_getty}":
-        ttys      => $ttys,
-        ttys_id   => $ttys_id,
-        speed     => $speed,
-        runlevels => $runlevels,
-        term_type => $term_type,
-      }
+    if $enable_login and ! empty($class_getty) {
+      contain "::serial_console::getty::${class_getty}"
     }
 
     # shell login profile for automatic logout on inactivity
-    class { 'serial_console::autologout':
-      logout_timeout => $logout_timeout,
-    }
+    contain ::serial_console::autologout
   }
 
-  class { 'serial_console::refresh':
-    cmd_refresh_init       => $cmd_refresh_init,
-    cmd_refresh_bootloader => $cmd_refresh_bootloader,
-  }
+  contain ::serial_console::refresh
 }

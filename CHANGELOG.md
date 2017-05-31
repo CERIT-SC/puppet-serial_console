@@ -1,3 +1,8 @@
+## 2017-05-31 - Release 0.9.8
+
+- Fix typos, quoting
+- Classes calls simplifications
+
 ## 2015-09-15 - Release 0.9.7
 
 ### Summary

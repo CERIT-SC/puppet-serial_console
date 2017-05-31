@@ -1,19 +1,13 @@
-class serial_console::getty::inittab (
-  $ttys,
-  $ttys_id,
-  $speed,
-  $term_type,
-  $runlevels
-) {
-  augeas { "inittab-agetty-${ttys}":
+class serial_console::getty::inittab {
+  augeas { "inittab-agetty-${::serial_console::ttys}":
     incl    => '/etc/inittab',
     lens    => 'Inittab.lns',
-    context => "/files/etc/inittab/T${ttys_id}",
+    context => "/files/etc/inittab/T${::serial_console::_ttys_id}",
     notify  => Class['serial_console::refresh'],
     changes => [
-      "set runlevels ${runlevels}",
+      "set runlevels ${::serial_console::runlevels}",
       'set action respawn',
-      "set process '/sbin/getty -8L ${speed} ${ttys} ${term_type}'"
+      "set process '/sbin/getty -8L ${::serial_console::speed} ${::serial_console::ttys} ${::serial_console::term_type}'"
     ]
   }
 }
