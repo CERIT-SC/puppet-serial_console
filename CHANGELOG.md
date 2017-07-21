@@ -1,3 +1,7 @@
+## 2017-07-21 - Release 0.9.9
+
+- Fix autologout script template variable reference
+
 ## 2017-05-31 - Release 0.9.8
 
 - Fix typos, quoting
