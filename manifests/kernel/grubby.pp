@@ -1,12 +1,8 @@
-class serial_console::kernel::grubby (
-  $tty,
-  $ttys,
-  $speed
-) {
-  if $tty {
-    $kparams = "console=${tty} console=${ttys},${speed}"
+class serial_console::kernel::grubby {
+  if ! empty($::serial_console::tty) {
+    $_kparams = "console=${::serial_console::tty} console=${::serial_console::ttys},${::serial_console::speed}"
   } else {
-    $kparams = "console=${ttys},${speed}"
+    $_kparams = "console=${::serial_console::ttys},${::serial_console::speed}"
   }
 
   Exec {
@@ -14,13 +10,13 @@ class serial_console::kernel::grubby (
   }
 
   exec { 'grubby-console-clean':
-    command => "grubby --update-kernel DEFAULT --remove-args '${kparams}'",
-    unless  => "grubby --info DEFAULT | egrep '^args=.*${kparams}'",
+    command => "grubby --update-kernel DEFAULT --remove-args '${_kparams}'",
+    unless  => "grubby --info DEFAULT | egrep '^args=.*${_kparams}'",
   }
 
   exec { 'grubby-console':
-    command => "grubby --update-kernel DEFAULT --args '${kparams}'",
-    unless  => "grubby --info DEFAULT | egrep '^args=.*${kparams}'",
+    command => "grubby --update-kernel DEFAULT --args '${_kparams}'",
+    unless  => "grubby --info DEFAULT | egrep '^args=.*${_kparams}'",
     require => Exec['grubby-console-clean'],
   }
 

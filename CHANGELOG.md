@@ -1,3 +1,7 @@
+## 2017-08-02 - Release 0.9.10
+
+- Fix unupdated class serial_console::kernel::grubby
+
 ## 2017-07-21 - Release 0.9.9
 
 - Fix autologout script template variable reference
