@@ -1,3 +1,7 @@
+## 2017-10-31 - Release 0.9.11
+
+- Support Debian 9
+
 ## 2017-08-02 - Release 0.9.10
 
 - Fix unupdated class serial_console::kernel::grubby
