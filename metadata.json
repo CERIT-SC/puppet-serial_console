@@ -62,6 +62,12 @@
         "8",
         "9"
       ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04"
+      ]
     }
   ],
   "requirements": [
