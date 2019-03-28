@@ -1,3 +1,6 @@
+
+- Support Ubuntu 18.04
+
 ## 2017-10-31 - Release 0.9.11
 
 - Support Debian 9

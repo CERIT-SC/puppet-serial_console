@@ -9,8 +9,9 @@ Module has been tested on:
 
 * Puppet 3.6
 * OS:
- * Debian 6,7,8,9
- * RHEL/CentOS 6,7
+* Debian 6,7,8,9
+* Ubuntu 18.04
+* RHEL/CentOS 6,7
 
 Required modules:
 
