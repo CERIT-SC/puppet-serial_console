@@ -1,3 +1,8 @@
+## 2020-02-03 - Release 0.9.12
+
+- Support Debian 10
+- Support Centos 8
+
 ## 2017-10-31 - Release 0.9.11
 
 - Support Debian 9
