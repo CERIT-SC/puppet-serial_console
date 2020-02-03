@@ -17,10 +17,6 @@
       "version_requirement": ">= 2.0.1"
     }
   ],
-  "data_provider": null,
-  "tags": [
-    "serial_console"
-  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -76,5 +72,11 @@
       "name": "puppet",
       "version_requirement": ">= 3.3.0 < 7.0.0"
     }
-  ]
+  ],
+  "tags": [
+    "serial_console"
+  ],
+  "pdk-version": "1.15.0",
+  "template-url": "pdk-default#1.15.0",
+  "template-ref": "tags/1.15.0-0-g0bc522e"
 }
