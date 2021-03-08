@@ -1,6 +1,6 @@
 {
   "name": "ceritsc-serial_console",
-  "version": "0.9.12",
+  "version": "0.9.13",
   "author": "ceritsc",
   "summary": "System serial console setup",
   "license": "MIT",
@@ -60,6 +60,12 @@
         "8",
         "9",
         "10"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "20.04"
       ]
     }
   ],

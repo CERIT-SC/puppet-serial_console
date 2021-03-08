@@ -1,3 +1,7 @@
+## 2020-03-04 - Release 0.9.13
+
+- Support Ubuntu 20.04
+
 ## 2020-02-03 - Release 0.9.12
 
 - Support Debian 10
