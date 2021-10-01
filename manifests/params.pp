@@ -19,7 +19,7 @@ class serial_console::params {
   $logout_timeout = 0
 
   case $::operatingsystem {
-    'RedHat','CentOS','Scientific','SLC','OracleLinux': {
+    'RedHat','CentOS','Scientific','SLC','OracleLinux','AlmaLinux','Rocky': {
       case $::operatingsystemmajrelease {
         '5','6': {
           $class_kernel = 'grubby'
