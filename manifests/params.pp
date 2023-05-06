@@ -54,7 +54,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
           $cmd_refresh_bootloader = '/usr/sbin/update-grub'
         }
 
-        '8','9','10','20.04': {
+        '8','9','10','11','20.04': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = undef
