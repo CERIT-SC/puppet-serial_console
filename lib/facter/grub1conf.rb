@@ -12,7 +12,7 @@ Facter.add("grub1conf") do
   setcode do
     value = nil
     ['/boot/grub/menu.lst','/etc/grub.conf'].each do |fn|
-      if File.exists?(fn)
+      if File.exist?(fn)
         value = fn
         break
       end
