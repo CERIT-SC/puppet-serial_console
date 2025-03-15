@@ -29,7 +29,7 @@ class serial_console::params {
           $cmd_refresh_bootloader = undef
         }
 
-        '7', '8': {
+        '7', '8', '9': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = undef
@@ -54,7 +54,7 @@ ${::operatingsystem} ${::operatingsystemmajrelease}")
           $cmd_refresh_bootloader = '/usr/sbin/update-grub'
         }
 
-        '8','9','10','11','20.04': {
+        '8','9','10','11','12','20.04','11','22.04','24.04': {
           $class_kernel = 'grub2'
           $class_bootloader = 'grub2'
           $class_getty = undef
